@@ -47,7 +47,7 @@ if(isset($_GET['aksi']) && $_GET['aksi']=='combogrid'){
 		while($row = mysqli_fetch_assoc($result)) {
 			$arr= [
 				'id'=>$row['id'],
-				'fullname'=>$row['nama_dpn'].' '.$row['nama_dpn'],
+				'fullname'=>$row['nama_dpn'].' '.$row['nama_blk'],
 				'nama_dpn'=>$row['nama_dpn'],
 				'nama_blk'=>$row['nama_blk'],
 				'nama_fb'=>$row['nama_fb'],
