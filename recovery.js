@@ -1,3 +1,16 @@
+$(document).ready(function () {
+  $('#searchTB').focus();
+});
+function tglexp() {
+  if ($('#tgl_exp_newCB').is(':checked')) {
+    $('#tgl_exp_newTB').removeAttr('disabled');
+    $('#tgl_exp_newTB').attr('required',true);
+  }else{
+    $('#tgl_exp_newTB').attr('disabled',true);
+    $('#tgl_exp_newTB').removeAttr('required');
+  }
+}
+
     var col = [
         {
             'align':'left',
@@ -38,6 +51,11 @@
             $('#tgl_expTB').val(ui.item.tgl_exp);
             $('#nama_fbTB').val(ui.item.nama_fb);
             $('#no_waTB').val(ui.item.no_wa);
+            $('#tgl_exp_newCB').removeAttr('disabled');
+            $('#nama_fbTB').removeAttr('disabled');
+            $('#no_waTB').removeAttr('disabled');
+            $('#simpanBtn').removeAttr('disabled');
+            $('#simpanBtn').addClass('btn-info');
           // read only
             $('#usernameTD').html(': '+ui.item.username);
             $('#nama_dpnTD').html(': '+ui.item.nama_dpn);
@@ -88,25 +106,29 @@
     });
 
     function saveform(){
-      var urlx ='&mode=create';
+      // var urlx ='&mode=create';
       $.ajax({
-        url:'action.php',
+        // url:'action.php',
+        url:'recoveryProcess.php',
         cache:false,
         type:'post',
         dataType:'json',
-        data:$('form').serialize()+urlx,
+        data:$('form').serialize(),
+        // data:$('form').serialize()+urlx,
 				// beforeSend:function () {
 				// 	$('.pageLoader').removeAttr('style');
 				// },
         success:function(dt){
 					setTimeout(function(){
-          	console.log(dt.returns.success);
+          	console.log(dt.status);
 						// $('.pageLoader').attr('style','display:none');
-            if(dt.returns.success==false){
-            	alertinfo('danger','<strong>Gagal !</strong>  menyimpan data');
+            if(dt.status==false){
+              alert('gagal menyimpan data');
+            	// alertinfo('danger','<strong>Gagal !</strong>  menyimpan data');
             }else{
-              resetform();
-            	alertinfo('success','<strong>Berhasil !</strong>  menyimpan data');
+              resetAll();
+              alert('berhasil menyimpan data');
+            	// alertinfo('success','<strong>Berhasil !</strong>  menyimpan data');
             }
           },700);
         }
@@ -119,9 +141,46 @@
             $('#alert-div').addClass('alert-'+clr);
     	}
 
-	    function resetform() {
-	    	$('#nama').val('');
-	    	$('#no_tlp').val('');
-	    	$('#jeniscombo').val('');
-	    	$('#hargacombo').val('');
-	    }
+	    // function resetform() {
+	    // 	$('#nama').val('');
+	    // 	$('#no_tlp').val('');
+	    // 	$('#jeniscombo').val('');
+	    // 	$('#hargacombo').val('');
+	    // }
+
+function resetAll() {
+  $('#searchTB').focus();
+// form ---
+// value --
+  $('#searchTB').val('');
+  $('#tgl_expTB').val('');
+  $('#tgl_exp_newTB').val('');
+  $('#no_waTB').val('');
+  $('#nama_fbTB').val('');
+  $('#tgl_exp_newTB').removeAttr('required');
+
+// disabled --
+  $('#tgl_exp_newTB').attr('disabled',true);
+  $('#no_waTB').attr('disabled',true);
+  $('#nama_fbTB').attr('disabled',true);
+  $('#simpanBtn').attr('disabled',true);
+  $('#simpanBtn').removeClass('btn-info');
+// table (read only)
+  $('#nama_dpnTD').html(':');
+  $('#nama_blkTD').html(':');
+  $('#genderTD').html(':');
+  $('#usernameTD').html(':');
+  $('#emailTD').html(':');
+  $('#nominalTD').html(':');
+  $('#tgl_joinTD').html(':');
+  $('#tgl_lunasTD').html(':');
+  $('#paytren_idTD').html(':');
+  $('#jaguarTD').html(':');
+  $('#referalTD').html(':');
+  $('#web_trainingTD').html(':');
+  $('#marketingTD').html(':');
+  $('#dna_idTD').html(':');
+  $('#dna_seqTD').html(':');
+  $('#dna_levelTD').html(':');
+  $('#mlm_typeTD').html(':');
+}

@@ -1,8 +1,7 @@
 <?php
 require_once 'koneksi.php';
 require_once 'lib/dateformat.php';
-// var_dump(isset($_GET));
-// exit();
+require_once 'lib/debug.php';
 
 if(isset($_GET['aksi']) && $_GET['aksi']=='combogrid'){
 		$page       = $_GET['page'];
@@ -72,8 +71,7 @@ if(isset($_GET['aksi']) && $_GET['aksi']=='combogrid'){
 			];
 			$rows[]=$arr;
 		}
-// print_r($rows);
-// exit();
+
 		$response=array(
 			'page'    =>$page,
 			'total'   =>$total_pages,
@@ -81,8 +79,16 @@ if(isset($_GET['aksi']) && $_GET['aksi']=='combogrid'){
 			'rows'    =>$rows,
 		);
 		$out=json_encode($response);
-		print_r($out);
+}elseif(isset($_POST)){
+	$sql='UPDATE pengguna SET
+				no_wa   	="'.$_POST['no_waTB'].'",
+				nama_fb  	="'.$_POST['nama_fbTB'].'"
+				'.(isset($_POST['tgl_exp_newCB'])?',tgl_exp 	="'.$_POST['tgl_exp_newTB'].'"':'').'
+			WHERE id='.$_POST['id_penggunaH'];
+	$exe = mysqli_query($conn,$sql);
+	$out=json_encode(['status'=>(!$exe?false:true)]);
 }else{
 	$out=json_encode(array('status'=>'invalid_request'));
 }
+echo $out;
 ?>

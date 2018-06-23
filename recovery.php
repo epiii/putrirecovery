@@ -116,7 +116,7 @@
 
       <div class="col-md-6">
       <!-- form -->
-        <form class="" action="index.html" method="post">
+        <form class="" onsubmit="saveform();return false;" action="" method="post">
           <div class="container">
 
              <div class="box box-info">
@@ -138,7 +138,7 @@
                   <input readonly id="tgl_expTB" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
                 </div>
 
-                <label>Tambahan 2 hari:</label>
+                <label>Tgl Expired Baru </label> (setelah ditambahkan perpanjangan):
                 <!-- <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -148,25 +148,25 @@
 
                 <div class="input-group date">
                   <span class="input-group-addon">
-                    <input type="checkbox">
+                    <input disabled onchange="tglexp();" id="tgl_exp_newCB" name="tgl_exp_newCB" type="checkbox">
                   </span>
-                  <input id="tgl_exp_newTB" type="text" class="form-control">
+                  <input disabled name="tgl_exp_newTB" id="tgl_exp_newTB" type="text" class="form-control">
                 </div>
 
                 <label for="">FB </label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                  <input id="nama_fbTB" type="web" class="form-control" placeholder="fb">
+                  <input disabled id="nama_fbTB" name="nama_fbTB" type="web" class="form-control" placeholder="fb">
                 </div>
 
                 <label for="">WA/Telp </label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                  <input  id="no_waTB" type="web" class="form-control" placeholder="wa">
+                  <input disabled id="no_waTB" name="no_waTB" type="web" class="form-control" placeholder="wa">
                 </div>
 
                 <br>
-                <input type="submit" name="" class="btn btn-info" value="simpan">
+                <input disabled type="submit" name="" id="simpanBtn" class="btn btn-default" value="simpan">
               </div>
               <!-- end of box-body -->
            </div>
