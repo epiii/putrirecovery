@@ -138,7 +138,7 @@
                   <input readonly id="tgl_expTB" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
                 </div>
 
-                <label>Tgl Expired Baru </label> (setelah ditambahkan perpanjangan):
+                <label>Tgl Expired Baru (+ 2hari)</label> | format yyyy-mm-dd:
                 <!-- <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
