@@ -46,6 +46,7 @@ function tglexp() {
         colModel: col ,
         url: 'recoveryProcess.php?aksi=combogrid&rows=5',
         select: function( event, ui ) { // event setelah data terpilih
+            resetAll(); // tambahan
           // form (edit)
             $('#id_penggunaH').val(ui.item.id);
             $('#tgl_expTB').val(ui.item.tgl_exp);
@@ -158,6 +159,7 @@ function resetAll() {
   $('#no_waTB').val('');
   $('#nama_fbTB').val('');
   $('#tgl_exp_newTB').removeAttr('required');
+  $('#tgl_exp_newCB').removeAttr('checked');  // tambahan
 
 // disabled --
   $('#tgl_exp_newTB').attr('disabled',true);
